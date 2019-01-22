@@ -1,0 +1,46 @@
+module RLinterface {
+    yang-version 1;
+    namespace "urn:opendaylight:params:xml:ns:yang:RLinterface";
+    prefix "RLinterface";
+
+    revision "2015-01-05" {
+        description "Initial revision of RLinterface model";
+    }
+
+    rpc getData {
+            input {
+                leaf NodeConnector {
+                    type string;
+                }
+            }
+            output {
+                leaf delay {
+                    type uint32;
+                }
+                leaf BW {
+                    type uint32;
+                }
+            }
+    }
+    rpc getGlobalData {
+        output {
+            list data-list {
+                description "latency and BW info";
+                config false;
+                key "nodeConnector";
+                leaf nodeConnector {
+                    description "srcnode";
+                    type string;
+                }
+                leaf delay {
+                    description "delay";
+                    type uint32;
+                }
+                leaf BW{
+                     description "BW";
+                     type uint32;
+                }
+            }
+        }
+    }
+}
